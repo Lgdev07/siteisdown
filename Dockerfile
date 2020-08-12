@@ -7,8 +7,9 @@ WORKDIR /siteisdown
 
 COPY requirements.txt /siteisdown
 
+RUN apk add --no-cache gcc && apk add linux-headers && apk add libc-dev
 RUN pip install -r requirements.txt
 
 COPY . /siteisdown
 
-CMD ["python", "main.py"]
+RUN pip install --editable .
